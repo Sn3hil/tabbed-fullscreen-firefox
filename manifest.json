@@ -1,0 +1,37 @@
+{
+  "manifest_version": 2,
+  "name": "Tabbed Fullscreen",
+  "version": "1.5.0",
+  "description": "Expand any playing video to fill the browser tab's viewport, without leaving fullscreen, hiding your tabs, or opening a new window.",
+  "icons": {
+    "48": "icons/icon-48.png",
+    "96": "icons/icon-96.png"
+  },
+  "browser_action": {
+    "default_title": "Toggle tabbed-fullscreen (or press Ctrl+Shift+F on the page)",
+    "default_icon": {
+      "48": "icons/icon-48.png",
+      "96": "icons/icon-96.png"
+    }
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ],
+  "permissions": ["activeTab", "tabs"],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "tabbed-fullscreen@local.extension",
+      "strict_min_version": "78.0"
+    }
+  }
+}
